@@ -2,6 +2,7 @@
   "expo": {
     "name": "SIDEQUEST",
     "slug": "SIDEQUEST",
+    "scheme": "sidequest",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -20,6 +21,30 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "expo-font",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Sidequest usa le tue immagini per caricare copertine e loghi dei giochi.",
+          "cameraPermission": false,
+          "microphonePermission": false
+        }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#5372B5",
+          "image": "./assets/logo.png",
+          "imageWidth": 210,
+          "resizeMode": "contain",
+          "dark": {
+            "backgroundColor": "#5372B5",
+            "image": "./assets/logo.png"
+          }
+        }
+      ]
+    ]
   }
 }
