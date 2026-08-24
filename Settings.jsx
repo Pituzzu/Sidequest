@@ -151,7 +151,7 @@ function TicketSettings({ colors, dark, t }) {
       <View style={[styles.subpageCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
         <PanelTitle Icon={TicketIcon} title={t('ticket')} colors={colors} dark={dark} />
 
-        <Text style={[styles.subpageIntro, { color: colors.muted }]}>
+        <Text style={[styles.subpageIntro, styles.ticketIntro, { color: colors.muted }]}>
           {t('ticketBody')}
         </Text>
 
@@ -539,6 +539,11 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     textAlign: 'center',
   },
+  ticketIntro: {
+    maxWidth: 300,
+    fontSize: 17,
+    lineHeight: 24,
+  },
   ticketInputBox: {
     width: '100%',
     height: 132,
@@ -557,16 +562,16 @@ const styles = StyleSheet.create({
     paddingTop: 15,
     paddingBottom: 29,
     borderWidth: 0,
-    fontSize: 14,
+    fontSize: 17,
     fontWeight: '800',
-    lineHeight: 19,
+    lineHeight: 23,
     outlineStyle: 'none',
   },
   ticketCounter: {
     position: 'absolute',
     right: 14,
     bottom: 10,
-    fontSize: 14,
+    fontSize: 15,
     fontWeight: '900',
   },
   primaryAction: {

@@ -480,7 +480,7 @@ La schermata principale contiene:
 
 Sottosezioni già realizzate, basate su `settings_screen2.png` e `settings_screen3.png`:
 
-- Ticket: messaggio massimo 150 caratteri e conferma invio; piano crediti e link di acquisto sono stati rimossi, mentre il pulsante “Invia” è esterno alla card.
+- Ticket: messaggio massimo 150 caratteri e conferma invio; piano crediti e link di acquisto sono stati rimossi, il pulsante “Invia” è esterno alla card e testo descrittivo/campo di scrittura sono ingranditi.
 - Cambio password: elenco dimostrativo di tre utenti, nuova password di almeno quattro caratteri, conferma e salvataggio locale.
 - Bug: testo massimo 500 caratteri e conferma invio.
 
