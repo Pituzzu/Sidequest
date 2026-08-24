@@ -35,7 +35,7 @@ Sidequest è un'app Expo/React Native per gestire una community di giochi da tav
 - impostazioni, tema scuro e traduzione italiano/inglese;
 - navigazione web con path espliciti e navigazione nativa tramite React Navigation.
 
-È al momento un prototipo frontend. Non esistono API, database o sincronizzazione cloud.
+È al momento un prototipo frontend. La base client Firebase è configurata, ma i flussi applicativi non sono ancora collegati ad Authentication, Firestore o Storage e non esiste ancora sincronizzazione cloud operativa.
 
 ## Stack e configurazione
 
@@ -50,6 +50,8 @@ Sidequest è un'app Expo/React Native per gestire una community di giochi da tav
 - `expo-font`
 - `expo-splash-screen`
 - `expo-status-bar`
+- Firebase JavaScript SDK `^12.18.0`
+- `@react-native-async-storage/async-storage` `2.2.0` per la persistenza nativa di Firebase Authentication
 - font Rubik Dirt
 
 Comandi principali:
@@ -63,7 +65,7 @@ npm run web
 npx tsc --noEmit
 ```
 
-`metro.config.js` configura gli SVG come componenti React. `declarations.d.ts` dichiara il tipo `*.svg`.
+`metro.config.js` configura gli SVG come componenti React. `declarations.d.ts` dichiara il tipo `*.svg`. `firebase-auth-react-native.d.ts` completa il typing dell'API di persistenza React Native esposta da Firebase 12.
 
 ## Struttura principale
 
@@ -81,6 +83,11 @@ npx tsc --noEmit
 - `Login.tsx`: accesso.
 - `recupero_nick.jsx`: recupero credenziali tramite WhatsApp.
 - `routes.ts`: associazione dei nomi schermata ai path.
+- `services/firebase.ts`: inizializzazione condivisa e lazy di Firebase App, Authentication, Firestore e Storage.
+- `services/firebaseAuth.native.ts`: Authentication persistente su Android e iOS tramite AsyncStorage.
+- `services/firebaseAuth.web.ts`: Authentication web con la persistenza standard del browser.
+- `.env.example`: nomi delle variabili Firebase richieste, senza credenziali reali.
+- `FIREBASE_SETUP.md`: procedura per creare la Web App Firebase e attivare i servizi. Firebase Hosting è escluso.
 - `assets/`: loghi, icone, copertine, curve SVG e schermate di riferimento.
 
 ## Navigazione e path
@@ -138,7 +145,7 @@ Profili creati dal contesto:
 
 `AuthContext` espone anche `can(permission)`, ma i controlli dei permessi non sono ancora applicati in modo uniforme a tutte le schermate.
 
-Limite importante: l'autenticazione è in memoria. Non ci sono account persistenti e gli utenti creati nella sezione Utenti non vengono aggiunti a un database di autenticazione.
+Limite importante: l'autenticazione dell'app è ancora in memoria. Il client Firebase Authentication è disponibile, ma `AuthContext` non è ancora migrato; non ci sono account persistenti e gli utenti creati nella sezione Utenti non vengono aggiunti a Firebase Authentication.
 
 ## Login e recupero credenziali
 
@@ -546,12 +553,12 @@ Quasi tutti i dati vivono nello stato React e vengono persi chiudendo o ricarica
 
 `EventStoreProvider` è posizionato sopra `AuthProvider`, quindi un evento creato dall'admin sopravvive a logout/login nella stessa esecuzione e diventa visibile all'utente. Non sopravvive a un riavvio e non è condiviso fra dispositivi.
 
-Non sono presenti:
+Non sono ancora presenti:
 
-- backend o API;
-- database;
-- `AsyncStorage` o altra persistenza locale;
-- autenticazione sicura;
+- flussi applicativi collegati a un backend o API;
+- collezioni e documenti applicativi in Firestore;
+- persistenza locale dei dati dell'app; AsyncStorage è installato soltanto per la futura sessione Firebase Authentication;
+- autenticazione Firebase collegata alle schermate;
 - upload remoto delle immagini;
 - notifiche push;
 - sincronizzazione in tempo reale;
@@ -560,8 +567,8 @@ Non sono presenti:
 ## Priorità tecniche consigliate
 
 1. Applicare realmente i permessi di ruolo in `Games.jsx`, `Users.jsx` e nelle sottosezioni Settings.
-2. Introdurre persistenza locale o backend, chiarendo prima con l'utente quale soluzione desidera.
-3. Collegare utenti registrati e credenziali al sistema di autenticazione.
+2. Definire schema Firestore, ruoli e regole di sicurezza prima di migrare i dati demo.
+3. Collegare `AuthContext`, utenti registrati e credenziali a Firebase Authentication e Firestore.
 4. Unificare i voti utente con le statistiche viste dall'admin.
 5. Rimuovere o trasformare in fixture gli eventi demo per evitare duplicati con eventi creati.
 6. Salvare lingua e tema.
@@ -593,9 +600,13 @@ Il progetto è sincronizzato sul repository GitHub `Pituzzu/Sidequest`. Sul nuov
 git clone https://github.com/Pituzzu/Sidequest.git
 cd Sidequest
 npm install
+Copy-Item .env.example .env
+# Compilare .env con i valori della Web App mostrati nella Firebase Console.
 npx tsc --noEmit
 npm run web
 ```
+
+Il file `.env` non viene versionato. Su ogni nuovo computer va ricreato partendo da `.env.example`. I dettagli completi sono in `FIREBASE_SETUP.md`. Firebase Hosting non fa parte di questa configurazione e resta gestito separatamente dal proprietario del progetto.
 
 Poi fornire a Codex `AGENTS.md` e `PROJECT_CONTEXT.md` oppure chiedergli esplicitamente di leggerli dal repository.
 
