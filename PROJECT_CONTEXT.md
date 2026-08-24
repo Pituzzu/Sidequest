@@ -418,7 +418,7 @@ Limite di ruolo: `Games.jsx` non applica ancora tutte le restrizioni di `AuthCon
 ### Registrazione
 
 1. Dati personali: nome, nickname/ID, data di nascita, telefono facoltativo, email, password.
-2. Selezione multipla giochi: copertine da `assets/copertine_giochi/`, ingrandite per occupare meglio le pill bianche, contenute senza ritaglio e con sfondo azzurro `#ADF8FF` quando selezionate.
+2. Selezione multipla giochi: copertine da `assets/copertine_giochi/`, ingrandite e centrate rispetto alle pill bianche, contenute senza ritaglio e con sfondo azzurro `#ADF8FF` quando selezionate.
 3. Inserimento del codice ID per ogni gioco scelto nella fase precedente, su card azzurre `#ADF8FF`.
 
 Con “Registra” viene generata una card utente locale.

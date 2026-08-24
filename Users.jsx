@@ -1433,6 +1433,7 @@ const styles = StyleSheet.create({
     width: '100%',
     maxWidth: 252,
     height: 72,
+    alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 36,
@@ -1443,16 +1444,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#ADF8FF',
   },
   gameCoverFrame: {
-    width: '91%',
-    maxWidth: 228,
-    height: 64,
+    ...StyleSheet.absoluteFillObject,
     alignItems: 'center',
     justifyContent: 'center',
+    paddingHorizontal: 12,
+    paddingVertical: 4,
     overflow: 'hidden',
   },
   gameCover: {
     width: '100%',
     height: '100%',
+    alignSelf: 'center',
   },
   idsPanel: {
     flex: 1,
