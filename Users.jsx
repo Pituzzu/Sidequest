@@ -705,6 +705,7 @@ function GameSelectionStep({ onNext, onToggle, selectedGames }) {
                     source={game.cover}
                     style={[
                       styles.gameCover,
+                      game.key === 'riftbound' && styles.riftboundGameCover,
                       { transform: [{ scale: game.coverScale }] },
                     ]}
                   />
@@ -1455,6 +1456,9 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     alignSelf: 'center',
+  },
+  riftboundGameCover: {
+    marginBottom: 5,
   },
   idsPanel: {
     flex: 1,

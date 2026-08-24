@@ -302,6 +302,7 @@ Interazioni:
 - la lista partecipanti si apre solo cliccando sul numero, non cliccando la card;
 - la parola “Partecipanti” è stata rimossa dalla card;
 - il menu apre modifica/eliminazione e gestione sondaggio;
+- l'eliminazione agisce sulla singola occorrenza/data selezionata e non rimuove le altre date della stessa serie;
 - le percentuali più basse sono rosse, quelle medie arancioni, la più alta verde;
 - l'amministratore può confermare un pallino/orario come orario definitivo;
 - la conferma vale solo per quello specifico evento e quella specifica data;
@@ -418,7 +419,7 @@ Limite di ruolo: `Games.jsx` non applica ancora tutte le restrizioni di `AuthCon
 ### Registrazione
 
 1. Dati personali: nome, nickname/ID, data di nascita, telefono facoltativo, email, password.
-2. Selezione multipla giochi: copertine da `assets/copertine_giochi/`, ingrandite e centrate rispetto alle pill bianche, contenute senza ritaglio e con sfondo azzurro `#ADF8FF` quando selezionate.
+2. Selezione multipla giochi: copertine da `assets/copertine_giochi/`, ingrandite e centrate rispetto alle pill bianche, contenute senza ritaglio e con sfondo azzurro `#ADF8FF` quando selezionate; Riftbound ha una correzione inferiore specifica di 5 px.
 3. Inserimento del codice ID per ogni gioco scelto nella fase precedente, su card azzurre `#ADF8FF`.
 
 Con “Registra” viene generata una card utente locale.

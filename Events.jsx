@@ -329,6 +329,53 @@ function getUserVoteKey(event, dateKey) {
   return event.type === 'Occasionale' ? event.id : `${event.id}-${dateKey}`;
 }
 
+function removeEventOccurrence(events, eventId, dateKey) {
+  return events.flatMap((event) => {
+    if (event.id !== eventId || !event.dateKeys.includes(dateKey)) {
+      return [event];
+    }
+
+    const remainingDateKeys = event.dateKeys.filter((key) => key !== dateKey);
+    if (remainingDateKeys.length === 0) {
+      return [];
+    }
+
+    const confirmedTimesByDate = Object.fromEntries(
+      Object.entries(event.confirmedTimesByDate ?? {}).filter(([key]) => key !== dateKey),
+    );
+
+    if (event.type === 'Ricorrente') {
+      return [{
+        ...event,
+        confirmedTimesByDate,
+        dateKeys: remainingDateKeys,
+        schedule: {
+          ...event.schedule,
+          closedDates: Array.from(
+            new Set([...(event.schedule.closedDates ?? []), dateKey]),
+          ).sort(),
+        },
+      }];
+    }
+
+    const timesByDate = { ...event.schedule.timesByDate };
+    delete timesByDate[dateKey];
+
+    return [{
+      ...event,
+      confirmedTimesByDate,
+      dateKeys: remainingDateKeys,
+      detail: remainingDateKeys
+        .map((key) => `${formatDate(key, true)} · ${(timesByDate[key] ?? []).join(', ')}`)
+        .join(' | '),
+      schedule: {
+        ...event.schedule,
+        timesByDate,
+      },
+    }];
+  });
+}
+
 function getExpiryHours(expiry, customExpiry) {
   if (!expiry) {
     return null;
@@ -1659,7 +1706,7 @@ function EventsList({ events, now, onConfirmTime, onCreate, onDelete, onModify, 
           onClose={() => setMenuEvent(null)}
           onConfirmTime={onConfirmTime}
           onDelete={() => {
-            onDelete(menuEvent.id);
+            onDelete(menuEvent.id, selectedDateKey);
             setMenuEvent(null);
           }}
           onModify={() => {
@@ -2357,8 +2404,8 @@ export default function Events({ activeGameKeys, navigation }) {
                       }
                     : event))}
               onCreate={startCreating}
-              onDelete={(eventId) => setEvents((currentEvents) =>
-                currentEvents.filter((event) => event.id !== eventId))}
+              onDelete={(eventId, dateKey) => setEvents((currentEvents) =>
+                removeEventOccurrence(currentEvents, eventId, dateKey))}
               onModify={modifyEvent}
               readOnly={isUser}
             />
