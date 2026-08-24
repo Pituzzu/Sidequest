@@ -294,6 +294,7 @@ function CreditCounterCard({ brand, onChange, onHistory, userName, value }) {
   const isSideQuest = brand === 'sidequest';
   const numericValue = Number(value) || 0;
   const [adjustment, setAdjustment] = useState('');
+  const [description, setDescription] = useState('');
   const adjustmentValue = Number(adjustment) || 0;
 
   const applyAdjustment = (direction) => {
@@ -315,10 +316,10 @@ function CreditCounterCard({ brand, onChange, onHistory, userName, value }) {
         colors={
           isSideQuest
             ? ['#061523', '#174C79', '#3F98ED']
-            : ['#090E0E', '#713A21', '#F17A2D']
+            : ['#950D10', '#FCA129']
         }
-        end={{ x: 1, y: 0.65 }}
-        start={{ x: 0, y: 0.35 }}
+        end={isSideQuest ? { x: 1, y: 0.65 } : { x: 1, y: 0.5 }}
+        start={isSideQuest ? { x: 0, y: 0.35 } : { x: 0, y: 0.5 }}
         style={styles.creditEditorCard}
       >
         <View style={styles.creditEditorCardTop}>
@@ -336,23 +337,19 @@ function CreditCounterCard({ brand, onChange, onHistory, userName, value }) {
             ]}
           />
 
+          <TextInput
+            accessibilityLabel={`${t('transactionDescription')} ${isSideQuest ? 'SideQuest' : 'GameMania'}`}
+            maxLength={60}
+            onChangeText={setDescription}
+            placeholder={t('transactionDescription')}
+            placeholderTextColor="rgba(255, 255, 255, 0.72)"
+            returnKeyType="done"
+            style={styles.creditTransactionDescription}
+            value={description}
+          />
+
           <View style={styles.creditEditorControls}>
             <View style={styles.creditAdjustmentArea}>
-              <TextInput
-                accessibilityLabel={`${t('amountToEdit')} ${isSideQuest ? 'SideQuest' : 'GameMania'}`}
-                inputMode="numeric"
-                keyboardType="number-pad"
-                maxLength={4}
-                onChangeText={(text) =>
-                  setAdjustment(text.replace(/\D/g, ''))
-                }
-                placeholder="0"
-                placeholderTextColor="#8D95A3"
-                selectTextOnFocus
-                style={[styles.creditAdjustmentInput, isDark && { backgroundColor: colors.card, color: colors.text }]}
-                value={adjustment}
-              />
-
               <Pressable
                 accessibilityLabel={`${t('subtractCredits')} ${adjustmentValue} ${isSideQuest ? 'SideQuest' : 'GameMania'}`}
                 accessibilityRole="button"
@@ -368,6 +365,21 @@ function CreditCounterCard({ brand, onChange, onHistory, userName, value }) {
               >
                 <Text style={[styles.creditEditorControlText, isDark && { color: colors.text }]}>−</Text>
               </Pressable>
+
+              <TextInput
+                accessibilityLabel={`${t('amountToEdit')} ${isSideQuest ? 'SideQuest' : 'GameMania'}`}
+                inputMode="numeric"
+                keyboardType="number-pad"
+                maxLength={4}
+                onChangeText={(text) =>
+                  setAdjustment(text.replace(/\D/g, ''))
+                }
+                placeholder="0"
+                placeholderTextColor="#8D95A3"
+                selectTextOnFocus
+                style={[styles.creditAdjustmentInput, isDark && { backgroundColor: colors.card, color: colors.text }]}
+                value={adjustment}
+              />
 
               <Pressable
                 accessibilityLabel={`${t('addCredits')} ${adjustmentValue} ${isSideQuest ? 'SideQuest' : 'GameMania'}`}
@@ -1427,7 +1439,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   gameChoiceSelected: {
-    backgroundColor: '#F5C330',
+    backgroundColor: '#ADF8FF',
   },
   gameCoverFrame: {
     width: 190,
@@ -1468,7 +1480,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#2E59B1',
     borderRadius: 19,
-    backgroundColor: '#55D2D4',
+    backgroundColor: '#ADF8FF',
   },
   idGameCoverFrame: {
     width: 152,
@@ -1563,7 +1575,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     borderRadius: 22,
-    backgroundColor: '#F5C330',
+    backgroundColor: '#ADF8FF',
   },
   filterIconFrame: {
     zIndex: 1,
@@ -1717,7 +1729,7 @@ const styles = StyleSheet.create({
     width: '88%',
     maxWidth: 370,
     minWidth: 290,
-    height: 195,
+    height: 238,
     borderRadius: 24,
     shadowColor: '#000',
     shadowOffset: { width: 4, height: 5 },
@@ -1734,23 +1746,37 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     paddingRight: 12,
-    paddingTop: 8,
+    paddingTop: 5,
   },
   creditEditorLogo: {
-    width: 250,
+    width: 282,
     aspectRatio: 169 / 59,
     alignSelf: 'flex-start',
   },
   creditEditorGameManiaLogo: {
-    width: 265,
+    width: 302,
     aspectRatio: 3,
+  },
+  creditTransactionDescription: {
+    width: '76%',
+    height: 28,
+    alignSelf: 'flex-start',
+    marginTop: -5,
+    marginLeft: 25,
+    paddingHorizontal: 2,
+    paddingVertical: 0,
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(255, 255, 255, 0.8)',
+    color: '#fff',
+    fontSize: 12,
+    outlineWidth: 0,
   },
   creditEditorControls: {
     minHeight: 48,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginTop: 2,
+    marginTop: 7,
     paddingLeft: 25,
     paddingRight: 8,
   },
@@ -1824,7 +1850,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#4268BB',
   },
   creditEditorFooterGameMania: {
-    backgroundColor: '#D09459',
+    backgroundColor: 'rgba(255, 255, 255, 0.12)',
   },
   creditEditorUserName: {
     flex: 1,

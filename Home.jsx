@@ -631,12 +631,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 10,
     borderRadius: 18,
-    backgroundColor: '#5372B5',
+    backgroundColor: '#294E9F',
   },
   statCardDark: {
     borderWidth: 1,
-    borderColor: '#354866',
-    backgroundColor: '#223451',
+    borderColor: '#496BBB',
+    backgroundColor: '#294E9F',
   },
   statIconContainer: {
     width: '42%',

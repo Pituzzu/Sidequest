@@ -201,7 +201,7 @@ La vista amministratore riproduce a componenti i riferimenti `home_screen1.png` 
 Contenuti:
 
 - saluto e profilo;
-- quattro blocchi statistici blu `#5372B5`;
+- quattro blocchi statistici blu `#294E9F`;
 - icone bianche, grandi e centrate in modo responsive;
 - data e ora più centrate;
 - sezione “Sondaggi mensili”;
@@ -417,8 +417,8 @@ Limite di ruolo: `Games.jsx` non applica ancora tutte le restrizioni di `AuthCon
 ### Registrazione
 
 1. Dati personali: nome, nickname/ID, data di nascita, telefono facoltativo, email, password.
-2. Selezione multipla giochi: copertine da `assets/copertine_giochi/`, grandi, contenute senza ritaglio e con sfondo giallo quando selezionate.
-3. Inserimento del codice ID per ogni gioco scelto nella fase precedente.
+2. Selezione multipla giochi: copertine da `assets/copertine_giochi/`, grandi, contenute senza ritaglio e con sfondo azzurro `#ADF8FF` quando selezionate.
+3. Inserimento del codice ID per ogni gioco scelto nella fase precedente, su card azzurre `#ADF8FF`.
 
 Con “Registra” viene generata una card utente locale.
 
@@ -427,7 +427,7 @@ Con “Registra” viene generata una card utente locale.
 - filtri gioco in scroll orizzontale, abbastanza visibile da suggerire lo scorrimento;
 - solo giochi attivi;
 - selezione simultanea di più filtri;
-- riempimento giallo animato;
+- riempimento azzurro `#ADF8FF` animato;
 - semantica AND: se sono selezionati più giochi, compaiono soltanto utenti associati a tutti quei giochi;
 - ricerca per nome o nickname;
 - totale utenti centrato;
@@ -442,11 +442,14 @@ La card utente mostra dati, giochi selezionati, crediti Sidequest/GameMania e me
 - Le card seguono il riferimento `utenti_card.png`.
 - Il totale credito non ha pulsanti propri.
 - A sinistra esiste un piccolo input numerico per la quantità.
+- L'input numerico è centrato tra i pulsanti meno e più.
+- Sotto ogni logo è presente una descrizione della transazione editabile.
 - `-` sottrae la quantità inserita dal totale.
 - `+` aggiunge la quantità inserita al totale.
 - Il credito è editabile anche digitando direttamente la quantità da applicare.
 - L'icona storico sostituisce la parola “Storico”.
 - Cliccando lo storico si apre una vista con movimenti dimostrativi.
+- I loghi delle due card sono ingranditi; la card GameMania usa un gradiente orizzontale da `#950D10` a `#FCA129`.
 
 Gli utenti e i movimenti restano in memoria.
 
@@ -595,4 +598,3 @@ npm run web
 Poi fornire a Codex `AGENTS.md` e `PROJECT_CONTEXT.md` oppure chiedergli esplicitamente di leggerli dal repository.
 
 L'ID della chat Codex originaria era `019fd22f-b4de-7641-b749-c9bfc9af7dc3`, ma non è un meccanismo portabile affidabile: `codex resume` elenca normalmente sessioni conservate localmente sul computer in cui sono state create. Il repository e questo documento sono quindi il metodo affidabile per trasferire il contesto.
-

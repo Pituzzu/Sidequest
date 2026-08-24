@@ -31,7 +31,7 @@ const DARK_COLORS = {
 const COPY = {
   it: {
     absent: 'Assente', activate: 'ATTIVA', active: 'attivo', add: 'AGGIUNGI', addCredits: 'Aggiungi crediti', addGame: 'Aggiungi un nuovo gioco', addId: 'AGGIUNGI ID',
-    amountToEdit: 'Importo da modificare per', assignPoints: 'Assegna punti a',
+    amountToEdit: 'Importo da modificare per', assignPoints: 'Assegna punti a', transactionDescription: 'Descrizione transazione',
     addTime: 'Nuova opzione +', administrator: 'AMMINISTRATORE', adminName: 'Nome Admin', back: 'INDIETRO',
     birthDate: 'Data Nascita', bugs: 'Segnala Bugs', bugsBody: "In questa sezione l’admin dell’app potrà segnalare eventuali bugs riscontrati durante l’utilizzo. Sii più dettagliato possibile per in modo da fornire al team di sviluppo maggiori informazioni.",
     bugsPlaceholder: 'Inserisci in quest’area la tua segnalazione.', cancel: 'Annulla',
@@ -89,7 +89,7 @@ const COPY = {
   },
   en: {
     absent: 'Absent', activate: 'ACTIVATE', active: 'active', add: 'ADD', addCredits: 'Add credits', addGame: 'Add a new game', addId: 'ADD ID', addTime: 'New option +',
-    amountToEdit: 'Amount to edit for', assignPoints: 'Assign points to',
+    amountToEdit: 'Amount to edit for', assignPoints: 'Assign points to', transactionDescription: 'Transaction description',
     administrator: 'ADMINISTRATOR', adminName: 'Admin Name', back: 'BACK', birthDate: 'Date of Birth', bugs: 'Report Bugs',
     bugsBody: 'In this section, the app admin can report any bugs encountered while using it. Be as detailed as possible to provide the development team with more information.',
     bugsPlaceholder: 'Enter your report in this area.', cancel: 'Cancel', changePassword: 'Change Password',
