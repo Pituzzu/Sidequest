@@ -316,7 +316,7 @@ L'utente normale:
 
 - non vede il pulsante per creare eventi;
 - non vede i comandi amministrativi di modifica, eliminazione o conferma finale;
-- vede il tipo di evento;
+- nella sezione Eventi non vede l'etichetta del tipo “Ricorrente/Occasionale” sulla card;
 - apre la lista partecipanti soltanto dal numero;
 - usa card basate su `eventi_screen_user1.png`;
 - usa `assets/curva1.svg` sul lato destro;

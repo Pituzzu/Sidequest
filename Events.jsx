@@ -1056,19 +1056,9 @@ function UserEventCard({ event, now, onParticipants, onVote, selectedDateKey, vo
 
           <View style={styles.userEventSummaryCopy}>
             <View style={styles.userEventSummaryTopRow}>
-              <View style={styles.userEventDateGroup}>
-                <Text style={[styles.userEventSummaryDate, isDark && { color: colors.text }]}>
-                  {formatDate(selectedDateKey, true, language)}
-                </Text>
-                <Text
-                  style={[
-                    styles.userEventType,
-                    event.type === 'Occasionale' && styles.userEventTypeOccasional,
-                  ]}
-                >
-                  {t(event.type === 'Occasionale' ? 'occasional' : 'recurring').toUpperCase()}
-                </Text>
-              </View>
+              <Text style={[styles.userEventSummaryDate, isDark && { color: colors.text }]}>
+                {formatDate(selectedDateKey, true, language)}
+              </Text>
               <Text style={styles.userEventSummaryCountdown}>
                 {formatCompactCountdown(pollDeadline, now)}
               </Text>
@@ -2641,20 +2631,6 @@ const styles = StyleSheet.create({
     color: BLUE,
     fontSize: 16,
     fontWeight: '900',
-  },
-  userEventDateGroup: {
-    flex: 1,
-    minWidth: 0,
-  },
-  userEventType: {
-    marginTop: 1,
-    color: '#6582C4',
-    fontSize: 8,
-    fontWeight: '900',
-    letterSpacing: 0.4,
-  },
-  userEventTypeOccasional: {
-    color: '#C46E6B',
   },
   userEventSummaryCountdown: {
     color: '#A5372E',
