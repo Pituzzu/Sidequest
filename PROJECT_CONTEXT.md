@@ -1,6 +1,6 @@
 # Sidequest — contesto operativo del progetto
 
-Ultimo aggiornamento: 11 agosto 2026  
+Ultimo aggiornamento: 24 agosto 2026
 Repository: `https://github.com/Pituzzu/Sidequest.git`  
 Branch principale: `master`  
 Commit di riferimento prima di questo documento: `47c5e51b455616587ca211d5781433ae54fc5102`
@@ -244,7 +244,7 @@ La creazione è divisa in tre fasi con indicatore animato. Quando si passa di fa
 
 - Mostra solo giochi attivi.
 - Le immagini sono grandi e proporzionate.
-- La selezione non usa uno sfondo giallo pieno: usa solo il bordo.
+- La selezione usa lo sfondo azzurro `#ADF8FF` e un bordo blu.
 
 ### Fase 2 — tipo e programmazione
 
@@ -368,6 +368,7 @@ Elenco:
 - barra di ricerca;
 - totale fisso e centrato;
 - pulsante `+` per aggiungere un gioco.
+- Il gioco selezionato usa lo sfondo azzurro `#ADF8FF`.
 
 Cliccando un gioco si apre un popup blur con:
 
@@ -417,7 +418,7 @@ Limite di ruolo: `Games.jsx` non applica ancora tutte le restrizioni di `AuthCon
 ### Registrazione
 
 1. Dati personali: nome, nickname/ID, data di nascita, telefono facoltativo, email, password.
-2. Selezione multipla giochi: copertine da `assets/copertine_giochi/`, grandi, contenute senza ritaglio e con sfondo azzurro `#ADF8FF` quando selezionate.
+2. Selezione multipla giochi: copertine da `assets/copertine_giochi/`, ingrandite per occupare meglio le pill bianche, contenute senza ritaglio e con sfondo azzurro `#ADF8FF` quando selezionate.
 3. Inserimento del codice ID per ogni gioco scelto nella fase precedente, su card azzurre `#ADF8FF`.
 
 Con “Registra” viene generata una card utente locale.
@@ -479,7 +480,7 @@ La schermata principale contiene:
 
 Sottosezioni già realizzate, basate su `settings_screen2.png` e `settings_screen3.png`:
 
-- Ticket: messaggio massimo 150 caratteri, costo dimostrativo di 3 crediti e conferma invio.
+- Ticket: messaggio massimo 150 caratteri e conferma invio; piano crediti e link di acquisto sono stati rimossi, mentre il pulsante “Invia” è esterno alla card.
 - Cambio password: elenco dimostrativo di tre utenti, nuova password di almeno quattro caratteri, conferma e salvataggio locale.
 - Bug: testo massimo 500 caratteri e conferma invio.
 

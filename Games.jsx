@@ -1018,7 +1018,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#AAAAAA',
   },
   gameChipSelected: {
-    backgroundColor: '#F5C330',
+    backgroundColor: '#ADF8FF',
   },
   gameChipPressed: {
     opacity: 0.74,

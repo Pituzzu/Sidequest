@@ -147,40 +147,32 @@ function TicketSettings({ colors, dark, t }) {
   };
 
   return (
-    <View style={[styles.subpageCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
-      <PanelTitle Icon={TicketIcon} title={t('ticket')} colors={colors} dark={dark} />
+    <View style={styles.ticketPage}>
+      <View style={[styles.subpageCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
+        <PanelTitle Icon={TicketIcon} title={t('ticket')} colors={colors} dark={dark} />
 
-      <Text style={[styles.subpageIntro, { color: colors.muted }]}>
-        {t('ticketBody')}
-      </Text>
-
-      <Text style={[styles.planLabel, { color: dark ? colors.text : '#3159AD' }]}>{t('ticketPlan')}</Text>
-      <Text style={[styles.creditNumber, { color: dark ? colors.accent : '#3159AD' }]}>3</Text>
-      <Text style={[styles.creditLabel, { color: dark ? colors.text : '#3159AD' }]}>{t('credits')}</Text>
-
-      <View style={[styles.ticketInputBox, { backgroundColor: colors.cardAlt }]}>
-        <TextInput
-          accessibilityLabel={t('ticketPlaceholder')}
-          maxLength={150}
-          multiline
-          onChangeText={(value) => {
-            setMessage(value);
-            if (sent) setSent(false);
-          }}
-          placeholder={t('ticketPlaceholder')}
-          placeholderTextColor={dark ? '#8491A5' : '#B1B1B1'}
-          style={[styles.ticketInput, { color: colors.text }]}
-          textAlignVertical="top"
-          value={message}
-        />
-        <Text style={[styles.ticketCounter, { color: colors.muted }]}>{message.length}/150</Text>
-      </View>
-
-      <Pressable accessibilityRole="link" style={({ pressed }) => pressed && styles.pressed}>
-        <Text style={[styles.buyCreditsLink, { color: dark ? colors.accent : '#3159AD' }]}>
-          {t('buyCredits')}
+        <Text style={[styles.subpageIntro, { color: colors.muted }]}>
+          {t('ticketBody')}
         </Text>
-      </Pressable>
+
+        <View style={[styles.ticketInputBox, { backgroundColor: colors.cardAlt }]}>
+          <TextInput
+            accessibilityLabel={t('ticketPlaceholder')}
+            maxLength={150}
+            multiline
+            onChangeText={(value) => {
+              setMessage(value);
+              if (sent) setSent(false);
+            }}
+            placeholder={t('ticketPlaceholder')}
+            placeholderTextColor={dark ? '#8491A5' : '#B1B1B1'}
+            style={[styles.ticketInput, { color: colors.text }]}
+            textAlignVertical="top"
+            value={message}
+          />
+          <Text style={[styles.ticketCounter, { color: colors.muted }]}>{message.length}/150</Text>
+        </View>
+      </View>
 
       <PrimaryAction disabled={!canSend} label={t('send')} onPress={sendTicket} />
       {sent && <Text style={styles.successMessage}>{t('ticketSent')}</Text>}
@@ -513,6 +505,12 @@ const styles = StyleSheet.create({
     shadowRadius: 9,
     elevation: 5,
   },
+  ticketPage: {
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
+    paddingBottom: 12,
+  },
   panelTitleRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -541,25 +539,10 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     textAlign: 'center',
   },
-  planLabel: {
-    marginTop: 29,
-    fontSize: 14,
-    fontWeight: '900',
-  },
-  creditNumber: {
-    marginTop: 5,
-    fontSize: 46,
-    fontWeight: '900',
-    lineHeight: 49,
-  },
-  creditLabel: {
-    fontSize: 14,
-    fontWeight: '900',
-  },
   ticketInputBox: {
     width: '100%',
     height: 132,
-    marginTop: 17,
+    marginTop: 29,
     overflow: 'hidden',
     borderRadius: 19,
     shadowColor: '#000',
@@ -585,14 +568,6 @@ const styles = StyleSheet.create({
     bottom: 10,
     fontSize: 14,
     fontWeight: '900',
-  },
-  buyCreditsLink: {
-    marginTop: 18,
-    fontSize: 10,
-    fontWeight: '900',
-    lineHeight: 13,
-    textAlign: 'center',
-    textDecorationLine: 'underline',
   },
   primaryAction: {
     minWidth: 112,

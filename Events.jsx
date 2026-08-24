@@ -1715,7 +1715,6 @@ function GameSelection({ activeGames, onNext, onSelect, selectedGameKey }) {
                 styles.gameOption,
                 isDark && { backgroundColor: colors.card, borderColor: colors.border },
                 selected && styles.gameOptionSelected,
-                isDark && selected && { backgroundColor: colors.card },
                 pressed && styles.pressed,
               ]}
             >
@@ -3371,8 +3370,8 @@ const styles = StyleSheet.create({
   },
   gameOptionSelected: {
     borderWidth: 4,
-    borderColor: YELLOW,
-    backgroundColor: '#fff',
+    borderColor: BLUE,
+    backgroundColor: '#ADF8FF',
   },
   gameOptionImage: {
     width: '100%',
